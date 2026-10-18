@@ -1,6 +1,6 @@
 # Checking the masks
 
-The automatic filters left 426 candidate masks. This check covers 100 of them across 13 categories, including all 40 from the earlier five-category check. Each mask was compared with its source-photo crop using Codex. These are AI-assisted decisions and need human confirmation before training.
+The automatic filters left 426 candidate masks. I checked 100 of them across 13 categories, including all 40 from the earlier five-category check. I reviewed the source-photo comparisons and confirmed the recorded decisions: 24 retained, 55 rejected, and 21 set aside for further review.
 
 | Category | Retain | Reject | Unsure | Total checked |
 | --- | --- | --- | --- | --- |
@@ -33,7 +33,7 @@ The numbered sheets show all 100 decisions: [1–20](mask_review_page_1.png), [2
 
 ## Files and rerunning
 
-`mask_review.csv` records the reason for each decision. Instance IDs combine the source-image ID with the zero-based line number in its polygon-label file. `review_summary.json` contains the counts generated from those records.
+`mask_review.csv` records the reason for each decision. The `initial_reviewer` column records the AI-assisted first pass; I subsequently checked and confirmed the decisions. Instance IDs combine the source-image ID with the zero-based line number in its polygon-label file. `review_summary.json` contains the counts generated from those records and the confirmation status.
 
 After running the pilot, generate the comparison sheets with:
 

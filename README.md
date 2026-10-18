@@ -8,9 +8,9 @@ Can a model recognize an object from its silhouette? What happens when two silho
 
 The project is at the proposal stage. So far, I have tested mask extraction, basic filtering, and overlapping silhouette generation on COCO128-Seg. Model training comes next.
 
-The script processed 128 photographs containing 929 annotated objects. Of these, 426 passed the automatic size and image-boundary checks. They still need manual review, since these checks cannot tell whether an outline is complete. I selected a few examples for the preview.
+The script processed 128 photographs containing 929 annotated objects. Of these, 426 passed the automatic size and image-boundary checks. These checks cannot tell whether an outline is complete, so visual inspection is also needed. I selected a few examples for the preview.
 
-A [closer check of 100 masks](evidence/README.md) covers 13 categories. Comparing them with source-photo crops using Codex left 24 candidates to retain, 55 to reject, and 21 unsure. The CSV records the reason for each decision, and numbered sheets show the masks. These AI-assisted decisions need human confirmation before training. The inspected categories are not the final class selection.
+I checked 100 masks across 13 categories against their source photographs: 24 were retained, 55 rejected, and 21 set aside for further review. The [screening records](evidence/README.md) include the reasons and numbered comparison sheets. These categories are not the final class selection.
 
 ## Dataset plan
 

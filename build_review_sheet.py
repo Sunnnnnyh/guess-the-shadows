@@ -53,7 +53,9 @@ def main():
         assert all(r['decision'] in {'retain', 'reject', 'uncertain'} and r['reason'].strip() for r in rows)
         summary = {
             'dataset': report['dataset'],
-            'reviewer': 'Codex AI-assisted visual inspection; human confirmation pending',
+            'reviewer': 'Project author',
+            'initial_screening': 'AI-assisted visual inspection',
+            'review_status': 'Source-photo comparisons checked and recorded decisions confirmed by project author',
             'selection': 'All automatically screened candidates in the 13 listed categories; not a random COCO sample',
             'reviewed_instances': len(selected),
             'unique_source_photographs': len({r['source_image'] for r in selected}),
@@ -65,7 +67,7 @@ def main():
         sheet = Image.new('RGB', (1200, ((len(selected)+3)//4)*270+80), 'white')
         draw = ImageDraw.Draw(sheet)
         draw.text((18, 12), f'COCO128-Seg: {len(selected)} masks checked', fill='black', font=font)
-        draw.text((18, 38), 'Compared with source crops using Codex. Decisions need confirmation before training.', fill='black', font=font)
+        draw.text((18, 38), 'Source-photo comparisons checked and decisions confirmed by the project author.', fill='black', font=font)
         colors = {'retain': '#176943', 'reject': '#a52626', 'uncertain': '#886000'}
         for i, r in enumerate(selected):
             x, y = (i % 4) * 300, (i // 4) * 270 + 75

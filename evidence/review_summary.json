@@ -1,6 +1,8 @@
 {
   "dataset": "Ultralytics COCO128-Seg",
-  "reviewer": "Codex AI-assisted visual inspection; human confirmation pending",
+  "reviewer": "Project author",
+  "initial_screening": "AI-assisted visual inspection",
+  "review_status": "Source-photo comparisons checked and recorded decisions confirmed by project author",
   "selection": "All automatically screened candidates in the 13 listed categories; not a random COCO sample",
   "reviewed_instances": 100,
   "unique_source_photographs": 40,

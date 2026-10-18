@@ -1,4 +1,4 @@
-instance_id,category,decision,reason,reviewer
+instance_id,category,decision,reason,initial_reviewer
 000000000443_00,cat,uncertain,"A person's hand touches the body; inspect the contact boundary before accepting.",Codex AI-assisted visual inspection
 000000000575_00,cat,uncertain,"Another cat overlaps the head region; completeness of the target outline is uncertain.",Codex AI-assisted visual inspection
 000000000650_00,cat,retain,"Body outline is visible in a crouching pose; no obvious external occluder.",Codex AI-assisted visual inspection
