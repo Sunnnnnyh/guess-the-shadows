@@ -1,0 +1,21 @@
+instance_id,category,decision,reason,reviewer
+000000000443_00,cat,uncertain,"A person's hand touches the body; inspect the contact boundary before accepting.",Codex AI-assisted visual inspection
+000000000575_00,cat,uncertain,"Another cat overlaps the head region; completeness of the target outline is uncertain.",Codex AI-assisted visual inspection
+000000000650_00,cat,retain,"Body outline is visible in a crouching pose; no obvious external occluder.",Codex AI-assisted visual inspection
+000000000490_00,dog,retain,"Standing dog with a visible body outline; keep this frontal pose.",Codex AI-assisted visual inspection
+000000000042_00,dog,uncertain,"Curled body is mixed with surrounding objects; difficult to separate pose effects from occlusion.",Codex AI-assisted visual inspection
+000000000074_00,dog,retain,"Resting pose with a visible outer body outline; pose alone is not a rejection reason.",Codex AI-assisted visual inspection
+000000000400_00,dog,reject,"Car window hides most of the body; mask contains a head and separated visible fragment.",Codex AI-assisted visual inspection
+000000000643_19,bottle,uncertain,"Low-resolution target has a coarse polygon outline; inspect at source resolution.",Codex AI-assisted visual inspection
+000000000283_00,bottle,retain,"Bottle neck and body outline are visible without an obvious external occluder.",Codex AI-assisted visual inspection
+000000000142_00,bottle,retain,"Jar-like instance has a visible outline; retain the original COCO category rather than relabeling by shape.",Codex AI-assisted visual inspection
+000000000486_04,bottle,uncertain,"Small source object has a blocky polygon; contour fidelity needs closer checking.",Codex AI-assisted visual inspection
+000000000113_03,cup,retain,"Cup body and handle are visible; inspect handle detail during final mask preparation.",Codex AI-assisted visual inspection
+000000000605_03,cup,reject,"A foreground object interrupts the lower-left outline of the glass.",Codex AI-assisted visual inspection
+000000000397_03,cup,reject,"Food hides much of the cup; the visible mask is only a narrow partial shape.",Codex AI-assisted visual inspection
+000000000127_02,cup,retain,"Cup body and handle outline are visible; handle-hole fidelity remains a conversion limitation.",Codex AI-assisted visual inspection
+000000000315_26,chair,reject,"Other furniture hides most of the chair; only a narrow seat or frame fragment remains.",Codex AI-assisted visual inspection
+000000000564_15,chair,reject,"Rows of chairs overlap; mask does not include a complete chair outline.",Codex AI-assisted visual inspection
+000000000564_08,chair,reject,"Only the chair back is visible above the foreground row.",Codex AI-assisted visual inspection
+000000000564_13,chair,reject,"Only an upper chair-back fragment is visible above the foreground row.",Codex AI-assisted visual inspection
+000000000623_02,chair,reject,"A person obscures most of the chair; the remaining mask is a partial backrest.",Codex AI-assisted visual inspection

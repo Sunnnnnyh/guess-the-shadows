@@ -10,6 +10,8 @@ The project is at the proposal stage. So far, I have tested mask extraction, bas
 
 The script processed 128 photographs containing 929 annotated objects. Of these, 426 passed the automatic size and image-boundary checks. They still need manual review, since these checks cannot tell whether an outline is complete. I selected a few examples for the preview.
 
+A [20-mask screening trial](evidence/README.md) now records provisional decisions and reasons from an AI-assisted comparison with the source photographs: seven retained, eight rejected, and five uncertain. It caught partial objects that passed the automatic checks, including a dog behind a car window and chairs hidden by other chairs. These decisions still need human confirmation before training.
+
 ## Dataset plan
 
 I plan to use COCO 2017 instance masks and select ten everyday-object categories, aiming for 300–500 usable instances per category. The final selection will depend on mask quality. Screening will exclude crowd annotations, very small objects, substantial occlusion or truncation, and annotation errors.
@@ -60,6 +62,8 @@ The extracted directory should contain `images/train2017` and `labels/train2017`
 - `requirements.txt`: NumPy and Pillow, needed to run the script. Training dependencies will be added with the model code.
 - `pilot_summary.json`: counts and notes from the trial run.
 - `.gitignore`: keeps downloaded data, generated output, and model files out of Git.
+- `build_review_sheet.py`: reproduces the inspection sheets for the 20-mask sample.
+- `evidence/`: screening decisions, notes, and a mask-only comparison image.
 
 ## Data notes
 
