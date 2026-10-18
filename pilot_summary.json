@@ -1,0 +1,21 @@
+{
+  "dataset": "Ultralytics COCO128-Seg",
+  "source_url": "https://github.com/ultralytics/assets/releases/download/v0.0.0/coco128-seg.zip",
+  "purpose": "data-pipeline pilot only; not a final training set or performance evaluation",
+  "source_image_count": 128,
+  "raw_instance_count": 929,
+  "passed_automatic_screen_count": 426,
+  "seed": 360,
+  "image_partitions": {
+    "train": 89,
+    "validation": 19,
+    "test": 20
+  },
+  "preview_selection": "Manually inspected illustrations, not a representative random sample",
+  "limitations": [
+    "The pilot is too small to establish final class feasibility.",
+    "Polygon conversion can alter fine mask details and holes.",
+    "Source masks can already contain occlusion; screening is not an amodal-mask guarantee.",
+    "Exposed area does not guarantee that a human can recognize the composite."
+  ]
+}
