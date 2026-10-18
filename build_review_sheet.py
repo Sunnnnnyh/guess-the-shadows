@@ -2,7 +2,6 @@
 import argparse
 import csv
 import json
-import random
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont, ImageOps
@@ -13,14 +12,14 @@ ROOT = Path(__file__).resolve().parent
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--data-dir', type=Path, required=True)
+    parser.add_argument('--sources-only', action='store_true', help='Build source comparison sheets before recording decisions')
     args = parser.parse_args()
     out = ROOT / 'output' / 'silhouette_pilot'
     report = json.loads((out / 'pilot_report.json').read_text(encoding='utf-8'))
-    rng = random.Random(360)
     selected = []
-    for category, count in [('cat', 3), ('dog', 4), ('bottle', 4), ('cup', 4), ('chair', 5)]:
+    for category in ['cat', 'dog', 'bottle', 'cup', 'chair']:
         pool = sorted((r for r in report['instances'] if r['category'] == category), key=lambda r: r['id'])
-        selected.extend(rng.sample(pool, min(count, len(pool))))
+        selected.extend(pool)
     (out / 'review_sample.json').write_text(json.dumps(selected, indent=2) + '\n', encoding='utf-8')
     font_path = Path('C:/Windows/Fonts/arial.ttf')
     font = ImageFont.truetype(str(font_path), 18) if font_path.exists() else ImageFont.load_default()
@@ -42,14 +41,14 @@ def main():
             sheet.paste(mask, (x+350, y+38))
         sheet.save(out / f'review_source_sheet_{page + 1}.jpg')
     decisions_path = ROOT / 'evidence' / 'mask_review.csv'
-    if decisions_path.exists():
+    if decisions_path.exists() and not args.sources_only:
         with decisions_path.open(encoding='utf-8', newline='') as handle:
             reviews = {r['instance_id']: r for r in csv.DictReader(handle)}
         assert set(reviews) == {r['id'] for r in selected}, 'Review IDs must match the sampled instances'
-        sheet = Image.new('RGB', (1200, 1430), 'white')
+        sheet = Image.new('RGB', (1200, ((len(selected)+3)//4)*270+80), 'white')
         draw = ImageDraw.Draw(sheet)
-        draw.text((18, 12), 'COCO128-Seg: 20-mask screening trial', fill='black', font=font)
-        draw.text((18, 38), 'AI-assisted visual review against source crops; provisional decisions, not training labels.', fill='black', font=font)
+        draw.text((18, 12), f'COCO128-Seg: {len(selected)} masks checked', fill='black', font=font)
+        draw.text((18, 38), 'Compared with source crops using Codex. Decisions need confirmation before training.', fill='black', font=font)
         colors = {'retain': '#176943', 'reject': '#a52626', 'uncertain': '#886000'}
         for i, r in enumerate(selected):
             x, y = (i % 4) * 300, (i // 4) * 270 + 75

@@ -19,3 +19,23 @@ instance_id,category,decision,reason,reviewer
 000000000564_08,chair,reject,"Only the chair back is visible above the foreground row.",Codex AI-assisted visual inspection
 000000000564_13,chair,reject,"Only an upper chair-back fragment is visible above the foreground row.",Codex AI-assisted visual inspection
 000000000623_02,chair,reject,"A person obscures most of the chair; the remaining mask is a partial backrest.",Codex AI-assisted visual inspection
+000000000307_00,dog,uncertain,"The pale tail extends left of the body; check whether the polygon includes it fully.",Codex AI-assisted visual inspection
+000000000309_02,dog,uncertain,"The small rearing dog has a coarse outline; check its head and raised forelegs at source resolution.",Codex AI-assisted visual inspection
+000000000581_00,dog,uncertain,"The head is clear but the lower body boundary may be incomplete.",Codex AI-assisted visual inspection
+000000000643_01,bottle,retain,"The bottle's cap and body outline are visible.",Codex AI-assisted visual inspection
+000000000562_03,cup,reject,"Toothbrushes interrupt the cup mask and remove part of its upper outline.",Codex AI-assisted visual inspection
+000000000605_01,cup,retain,"The foreground cup's body and handle have a visible outer outline.",Codex AI-assisted visual inspection
+000000000110_00,chair,reject,"A seated person hides the seat and lower chair structure.",Codex AI-assisted visual inspection
+000000000110_01,chair,reject,"A person hides most of the chair; only separated pieces remain.",Codex AI-assisted visual inspection
+000000000113_00,chair,reject,"The table hides the chair below its narrow backrest.",Codex AI-assisted visual inspection
+000000000315_20,chair,reject,"Bags and nearby furniture obscure parts of the reclining chair.",Codex AI-assisted visual inspection
+000000000315_27,chair,reject,"Bags and overlapping frames hide the seat and parts of the chair structure.",Codex AI-assisted visual inspection
+000000000315_29,chair,reject,"Only a thin seat or frame strip remains visible.",Codex AI-assisted visual inspection
+000000000536_00,chair,reject,"The seated person hides most of the chair; the mask contains disconnected visible pieces.",Codex AI-assisted visual inspection
+000000000564_04,chair,reject,"Foreground chairs hide the lower part; only the upper backrest is visible.",Codex AI-assisted visual inspection
+000000000564_05,chair,reject,"Only the backrest is visible between overlapping rows.",Codex AI-assisted visual inspection
+000000000564_06,chair,reject,"Other chairs hide the seat and lower structure.",Codex AI-assisted visual inspection
+000000000564_07,chair,reject,"Overlapping chairs leave a partial backrest outline.",Codex AI-assisted visual inspection
+000000000564_09,chair,reject,"The foreground row hides the lower chair structure.",Codex AI-assisted visual inspection
+000000000564_11,chair,reject,"The backrest is visible but the seat and legs are hidden.",Codex AI-assisted visual inspection
+000000000564_14,chair,reject,"The mask covers a partial backrest; the rest of the chair is hidden.",Codex AI-assisted visual inspection
