@@ -2,6 +2,7 @@
 import argparse
 import csv
 import json
+from collections import Counter
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont, ImageOps
@@ -17,7 +18,9 @@ def main():
     out = ROOT / 'output' / 'silhouette_pilot'
     report = json.loads((out / 'pilot_report.json').read_text(encoding='utf-8'))
     selected = []
-    for category in ['cat', 'dog', 'bottle', 'cup', 'chair']:
+    for category in ['cat', 'dog', 'bottle', 'cup', 'chair', 'umbrella',
+                     'teddy bear', 'bird', 'airplane', 'elephant', 'giraffe',
+                     'bicycle', 'bear']:
         pool = sorted((r for r in report['instances'] if r['category'] == category), key=lambda r: r['id'])
         selected.extend(pool)
     (out / 'review_sample.json').write_text(json.dumps(selected, indent=2) + '\n', encoding='utf-8')
@@ -43,8 +46,22 @@ def main():
     decisions_path = ROOT / 'evidence' / 'mask_review.csv'
     if decisions_path.exists() and not args.sources_only:
         with decisions_path.open(encoding='utf-8', newline='') as handle:
-            reviews = {r['instance_id']: r for r in csv.DictReader(handle)}
+            rows = list(csv.DictReader(handle))
+            reviews = {r['instance_id']: r for r in rows}
+        assert len(rows) == len(reviews), 'Duplicate instance IDs in review CSV'
         assert set(reviews) == {r['id'] for r in selected}, 'Review IDs must match the sampled instances'
+        assert all(r['decision'] in {'retain', 'reject', 'uncertain'} and r['reason'].strip() for r in rows)
+        summary = {
+            'dataset': report['dataset'],
+            'reviewer': 'Codex AI-assisted visual inspection; human confirmation pending',
+            'selection': 'All automatically screened candidates in the 13 listed categories; not a random COCO sample',
+            'reviewed_instances': len(selected),
+            'unique_source_photographs': len({r['source_image'] for r in selected}),
+            'decision_counts': dict(Counter(r['decision'] for r in rows)),
+            'by_category': {category: dict(Counter(reviews[r['id']]['decision'] for r in selected if r['category'] == category))
+                            for category in dict.fromkeys(r['category'] for r in selected)},
+        }
+        (ROOT / 'evidence' / 'review_summary.json').write_text(json.dumps(summary, indent=2)+'\n', encoding='utf-8')
         sheet = Image.new('RGB', (1200, ((len(selected)+3)//4)*270+80), 'white')
         draw = ImageDraw.Draw(sheet)
         draw.text((18, 12), f'COCO128-Seg: {len(selected)} masks checked', fill='black', font=font)
@@ -60,6 +77,13 @@ def main():
             draw.text((x+12, y+217), review['decision'].upper(), fill=colors[review['decision']], font=font)
             draw.text((x+12, y+241), r['id'], fill='#555555', font=font)
         sheet.save(ROOT / 'evidence' / 'mask_review.png')
+        for page in range((len(selected)+19)//20):
+            start_row = page*5
+            row_count = min(5, (len(selected)+3)//4-start_row)
+            detail = Image.new('RGB', (1200, row_count*270+80), 'white')
+            detail.paste(sheet.crop((0, 0, 1200, 75)), (0, 0))
+            detail.paste(sheet.crop((0, 75+start_row*270, 1200, 75+(start_row+row_count)*270)), (0, 75))
+            detail.save(ROOT / 'evidence' / f'mask_review_page_{page+1}.png')
     print('\n'.join(f"{i+1}: {r['id']} {r['category']}" for i, r in enumerate(selected)))
 
 

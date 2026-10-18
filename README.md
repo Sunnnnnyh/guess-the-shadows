@@ -10,7 +10,7 @@ The project is at the proposal stage. So far, I have tested mask extraction, bas
 
 The script processed 128 photographs containing 929 annotated objects. Of these, 426 passed the automatic size and image-boundary checks. They still need manual review, since these checks cannot tell whether an outline is complete. I selected a few examples for the preview.
 
-A [closer check of 40 masks](evidence/README.md) covers every cat, dog, bottle, cup, and chair that passed those filters. Comparing them with source-photo crops using Codex left nine candidates to retain, 23 to reject, and eight unsure. The CSV records why: some dogs and chairs had already lost much of their outline to occlusion. These AI-assisted decisions need human confirmation before training.
+A [closer check of 100 masks](evidence/README.md) covers 13 categories. Comparing them with source-photo crops using Codex left 24 candidates to retain, 55 to reject, and 21 unsure. The CSV records the reason for each decision, and numbered sheets show the masks. These AI-assisted decisions need human confirmation before training. The inspected categories are not the final class selection.
 
 ## Dataset plan
 
@@ -62,7 +62,7 @@ The extracted directory should contain `images/train2017` and `labels/train2017`
 - `requirements.txt`: NumPy and Pillow, needed to run the script. Training dependencies will be added with the model code.
 - `pilot_summary.json`: counts and notes from the trial run.
 - `.gitignore`: keeps downloaded data, generated output, and model files out of Git.
-- `build_review_sheet.py`: reproduces the inspection sheets for the 40 checked masks.
+- `build_review_sheet.py`: reproduces the inspection sheets and counts for the 100 checked masks.
 - `evidence/`: screening decisions, notes, and a mask-only comparison image.
 
 ## Data notes

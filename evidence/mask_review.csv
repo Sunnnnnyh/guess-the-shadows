@@ -39,3 +39,63 @@ instance_id,category,decision,reason,reviewer
 000000000564_09,chair,reject,"The foreground row hides the lower chair structure.",Codex AI-assisted visual inspection
 000000000564_11,chair,reject,"The backrest is visible but the seat and legs are hidden.",Codex AI-assisted visual inspection
 000000000564_14,chair,reject,"The mask covers a partial backrest; the rest of the chair is hidden.",Codex AI-assisted visual inspection
+000000000127_10,umbrella,uncertain,"The folded canopy is visible but the shaft is missing from the mask; check annotation coverage.",Codex AI-assisted visual inspection
+000000000308_12,umbrella,retain,"The open canopy and central shaft have a visible outline.",Codex AI-assisted visual inspection
+000000000315_00,umbrella,reject,"Overlapping canopies hide a large part of this umbrella.",Codex AI-assisted visual inspection
+000000000315_01,umbrella,reject,"A nearer canopy leaves only a curved strip of the target visible.",Codex AI-assisted visual inspection
+000000000315_02,umbrella,reject,"Most of the canopy is hidden behind the foreground umbrella.",Codex AI-assisted visual inspection
+000000000315_03,umbrella,reject,"Neighboring umbrellas interrupt the canopy outline.",Codex AI-assisted visual inspection
+000000000315_05,umbrella,reject,"A foreground canopy hides the lower part of this umbrella.",Codex AI-assisted visual inspection
+000000000315_06,umbrella,uncertain,"The folded canopy is visible but shaft coverage is unclear in the small source crop.",Codex AI-assisted visual inspection
+000000000315_09,umbrella,reject,"Overlapping canopies leave only a crescent-shaped region.",Codex AI-assisted visual inspection
+000000000315_10,umbrella,reject,"Only a narrow strip remains between neighboring umbrellas.",Codex AI-assisted visual inspection
+000000000315_18,umbrella,reject,"A person's head and nearby canopies interrupt the umbrella outline.",Codex AI-assisted visual inspection
+000000000315_35,umbrella,uncertain,"The distant umbrella is blurred and its lower boundary is difficult to check.",Codex AI-assisted visual inspection
+000000000133_01,teddy bear,uncertain,"The small bear is blurred behind glass; limb and head boundaries need closer checking.",Codex AI-assisted visual inspection
+000000000309_00,teddy bear,reject,"The neighboring bear and ribbon interrupt the target's body mask.",Codex AI-assisted visual inspection
+000000000309_01,teddy bear,uncertain,"Several plush shapes touch; the visible outline may not cover the whole target.",Codex AI-assisted visual inspection
+000000000309_03,teddy bear,uncertain,"Only a narrow plush region is distinct; target identity and extent need a closer look.",Codex AI-assisted visual inspection
+000000000491_00,teddy bear,retain,"The sitting white bear has a visible head and body outline.",Codex AI-assisted visual inspection
+000000000612_01,teddy bear,uncertain,"The lower body meets other bears; the feet and contact boundary are unclear.",Codex AI-assisted visual inspection
+000000000612_02,teddy bear,retain,"The sitting bear's head and body outline are visible.",Codex AI-assisted visual inspection
+000000000612_03,teddy bear,reject,"Other bears hide much of the torso and leave disconnected mask fragments.",Codex AI-assisted visual inspection
+000000000612_04,teddy bear,reject,"The white foreground bear hides the lower body.",Codex AI-assisted visual inspection
+000000000612_05,teddy bear,reject,"The mask contains mainly the head; other bears hide the body.",Codex AI-assisted visual inspection
+000000000612_06,teddy bear,retain,"The side-facing bear has a visible head and seated body outline.",Codex AI-assisted visual inspection
+000000000612_08,teddy bear,reject,"The white foreground bear removes a large part of the torso outline.",Codex AI-assisted visual inspection
+000000000612_09,teddy bear,uncertain,"The white bear blends with nearby objects; head and upper-body extent are unclear.",Codex AI-assisted visual inspection
+000000000612_10,teddy bear,reject,"Nearby bears hide the lower body and interrupt its outline.",Codex AI-assisted visual inspection
+000000000643_11,teddy bear,reject,"A yellow foreground box hides the bear's lower body.",Codex AI-assisted visual inspection
+000000000643_17,teddy bear,uncertain,"The narrow plush toy has a coarse polygon; check its feet and original category assignment.",Codex AI-assisted visual inspection
+000000000143_00,bird,retain,"The bird has a rounded tucked-head pose with a visible outer body outline.",Codex AI-assisted visual inspection
+000000000143_01,bird,reject,"A branch crosses the lower body and splits the visible mask.",Codex AI-assisted visual inspection
+000000000143_02,bird,retain,"The back-facing bird's body and tail outline are visible.",Codex AI-assisted visual inspection
+000000000143_03,bird,reject,"A thick diagonal branch crosses the body.",Codex AI-assisted visual inspection
+000000000143_04,bird,reject,"The bird above overlaps the target's head region.",Codex AI-assisted visual inspection
+000000000143_05,bird,retain,"The rounded back-facing pose has no obvious external occluder across the body.",Codex AI-assisted visual inspection
+000000000143_06,bird,reject,"An upper bird and branch hide part of the head and upper outline.",Codex AI-assisted visual inspection
+000000000143_07,bird,reject,"A branch and neighboring bird interrupt the head and upper-body mask.",Codex AI-assisted visual inspection
+000000000081_00,airplane,retain,"The aircraft's wings and fuselage have a visible outline.",Codex AI-assisted visual inspection
+000000000472_00,airplane,retain,"The side-view aircraft has a visible outer outline despite the small source size.",Codex AI-assisted visual inspection
+000000000540_04,airplane,retain,"The parked aircraft has a visible side-profile outline.",Codex AI-assisted visual inspection
+000000000061_02,elephant,reject,"Foliage and riding equipment hide much of the animal's original outline.",Codex AI-assisted visual inspection
+000000000061_03,elephant,reject,"Foliage hides the legs and riding equipment covers part of the back.",Codex AI-assisted visual inspection
+000000000312_00,elephant,uncertain,"Grass and nearby elephants make the feet and trunk boundary hard to confirm.",Codex AI-assisted visual inspection
+000000000312_01,elephant,reject,"The calf in front hides part of the adult's legs and lower body.",Codex AI-assisted visual inspection
+000000000312_02,elephant,uncertain,"The calf stands among adult legs; its upper-back and leg boundaries need a closer look.",Codex AI-assisted visual inspection
+000000000312_04,elephant,reject,"Other elephants hide most of the target and leave separated fragments.",Codex AI-assisted visual inspection
+000000000312_05,elephant,reject,"A foreground trunk and another elephant interrupt the head and back outline.",Codex AI-assisted visual inspection
+000000000597_00,elephant,uncertain,"The small source produces a very coarse outline around the legs and trunk.",Codex AI-assisted visual inspection
+000000000597_01,elephant,retain,"The side-view elephant has a visible body and leg outline.",Codex AI-assisted visual inspection
+000000000597_02,elephant,retain,"The walking elephant's outer body and legs are visible.",Codex AI-assisted visual inspection
+000000000597_03,elephant,retain,"The side-view body and walking legs have no obvious major occluder.",Codex AI-assisted visual inspection
+000000000597_04,elephant,retain,"The outer body and legs are visible in this side view.",Codex AI-assisted visual inspection
+000000000597_05,elephant,uncertain,"The distant elephant has a blocky mask with little leg or trunk detail.",Codex AI-assisted visual inspection
+000000000025_00,giraffe,reject,"A foreground log and vegetation hide the lower legs.",Codex AI-assisted visual inspection
+000000000025_01,giraffe,reject,"Vegetation hides the body; the mask contains mainly the neck and head.",Codex AI-assisted visual inspection
+000000000072_00,giraffe,reject,"Another giraffe and branches interrupt the neck and body outline.",Codex AI-assisted visual inspection
+000000000136_02,giraffe,reject,"The mask omits the long neck and head and retains mainly the torso and legs.",Codex AI-assisted visual inspection
+000000000136_03,giraffe,retain,"This giraffe model has a visible head and body outline; the original label is retained.",Codex AI-assisted visual inspection
+000000000074_01,bicycle,reject,"The mask covers only part of the wheel and frame; the full bicycle outline is missing.",Codex AI-assisted visual inspection
+000000000641_00,bicycle,reject,"The bicycle is partly hidden beside street furniture and has an incomplete frame and wheel mask.",Codex AI-assisted visual inspection
+000000000502_00,bear,reject,"Vegetation hides the lower legs and interrupts the body's lower outline.",Codex AI-assisted visual inspection

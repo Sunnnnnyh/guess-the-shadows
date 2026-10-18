@@ -1,0 +1,66 @@
+{
+  "dataset": "Ultralytics COCO128-Seg",
+  "reviewer": "Codex AI-assisted visual inspection; human confirmation pending",
+  "selection": "All automatically screened candidates in the 13 listed categories; not a random COCO sample",
+  "reviewed_instances": 100,
+  "unique_source_photographs": 40,
+  "decision_counts": {
+    "uncertain": 21,
+    "retain": 24,
+    "reject": 55
+  },
+  "by_category": {
+    "cat": {
+      "uncertain": 2,
+      "retain": 1
+    },
+    "dog": {
+      "uncertain": 4,
+      "retain": 2,
+      "reject": 1
+    },
+    "bottle": {
+      "retain": 3,
+      "uncertain": 2
+    },
+    "cup": {
+      "retain": 3,
+      "reject": 3
+    },
+    "chair": {
+      "reject": 19
+    },
+    "umbrella": {
+      "uncertain": 3,
+      "retain": 1,
+      "reject": 8
+    },
+    "teddy bear": {
+      "uncertain": 6,
+      "reject": 7,
+      "retain": 3
+    },
+    "bird": {
+      "retain": 3,
+      "reject": 5
+    },
+    "airplane": {
+      "retain": 3
+    },
+    "elephant": {
+      "reject": 5,
+      "uncertain": 4,
+      "retain": 4
+    },
+    "giraffe": {
+      "reject": 4,
+      "retain": 1
+    },
+    "bicycle": {
+      "reject": 2
+    },
+    "bear": {
+      "reject": 1
+    }
+  }
+}
