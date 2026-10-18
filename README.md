@@ -2,35 +2,41 @@
 
 **Single and Overlapping Silhouette Recognition — APS360 individual project**
 
-Given a binary silhouette containing one object or two overlapping objects, predict the categories present. The project studies recognition from shape alone and how performance changes as overlap increases.
+Can a model recognize an object from its silhouette? What happens when two silhouettes overlap and parts of their outlines disappear? This project looks at both cases, using single objects as a reference for measuring how recognition changes with overlap.
 
 ## Current status
 
-This repository contains proposal-stage work. A small COCO128-Seg pilot checks mask extraction, basic screening, and silhouette composition. The CNN and baseline have **not** been trained, and there are no classification results yet.
+The project is at the proposal stage. So far, I have tested mask extraction, basic filtering, and overlapping silhouette generation on COCO128-Seg. Model training comes next.
 
-The pilot processes 128 source photographs and 929 polygon instances; 426 instances pass its automatic size and image-boundary checks. These counts do not establish that the masks are complete or suitable for final training. Manual review is still required. The preview uses a small, manually selected set of examples.
+The script processed 128 photographs containing 929 annotated objects. Of these, 426 passed the automatic size and image-boundary checks. They still need manual review, since these checks cannot tell whether an outline is complete. I selected a few examples for the preview.
 
-## Planned dataset
+## Dataset plan
 
-- Source: COCO 2017 instance-segmentation annotations.
-- Target: ten everyday-object categories, approximately 300–500 usable instances per category. Final classes and counts depend on screening.
-- Inspect candidate masks and exclude crowd annotations, very small objects, substantial truncation or occlusion, and annotation errors.
-- Split by original photograph before synthesis, keeping every instance and derivative of a photograph in the same partition. Proposed split: 70% training, 15% validation, 15% test; seed 360.
-- Render foreground masks as black silhouettes on white 128 × 128 canvases.
-- Combine masks from different categories by their binary union. Keep foreground areas within a factor of two.
-- Measure overlap as **IoS = intersection area / min(area A, area B)**. Proposed bins: low 10–20%, medium 20–35%, high 35–50%.
-- Keep object scales fixed across the three overlap versions of each selected pair, and avoid clipping.
-- Retain source IDs, labels, transforms, and overlap measurements.
+I plan to use COCO 2017 instance masks and select ten everyday-object categories, aiming for 300–500 usable instances per category. The final selection will depend on mask quality. Screening will exclude crowd annotations, very small objects, substantial occlusion or truncation, and annotation errors.
 
-The existing pilot predates the final proposal settings. It measures intersection fractions separately for both instances and generates a few previews; it does **not** yet implement the complete ten-category dataset or matched low/medium/high evaluation sets.
+Original photographs will be split into training, validation, and test sets in a 70:15:15 ratio with seed 360, before any overlapping images are made. All objects and generated samples from a photograph will stay in the same split to prevent data leakage.
 
-## Planned models and evaluation
+Each input will be a black silhouette on a white 128 × 128 canvas. For overlapping inputs, two masks from different categories will be joined by pixelwise union, so the internal boundary disappears. Neither object's foreground area will exceed twice the other's.
 
-The initial PyTorch CNN will use three convolutional blocks with 32, 64, and 128 channels, 3 × 3 convolutions, ReLU, and 2 × 2 max pooling. Global average pooling and a linear layer will produce one logit per category. Training will use binary cross-entropy with logits, with sigmoid scores thresholded at inference.
+Overlap will be measured using **IoS = intersection area / min(area A, area B)**:
 
-The baseline will be one-vs-rest logistic regression on flattened silhouette pixels with L2 regularization. Model choices, regularization strength, and prediction thresholds will use validation data only.
+| Level | IoS range |
+| --- | --- |
+| Low | 10–20% |
+| Medium | 20–35% |
+| High | 35–50% |
 
-Both models will use the same source partitions and be evaluated with exact-match accuracy and macro F1, separately for single objects and each overlap level.
+Each selected pair will have all three versions, with object scales held fixed and neither object clipped by the canvas. Labels, source IDs, transformations, and measured overlap will be saved with the generated samples.
+
+The current script is an early trial. It records overlap as a fraction of each object's area and makes a few previews. The ten-category dataset and matched low/medium/high sets are still to be built.
+
+## Models
+
+I will start with a PyTorch CNN trained from scratch: three convolutional blocks with 32, 64, and 128 channels, each using a 3 × 3 convolution, ReLU, and 2 × 2 max pooling. Global average pooling and a linear layer will produce one logit per category. Binary cross-entropy with logits will be used for training; sigmoid scores and a threshold will determine the predicted labels.
+
+The baseline will be one-vs-rest logistic regression on flattened silhouette pixels, with L2 regularization. Model selection, regularization strength, and prediction thresholds will use the validation set.
+
+Both models will use the same data splits. Final test results will include exact-match accuracy and macro F1, reported separately for single objects and each overlap level. Neither model has been trained yet.
 
 ## Run the pilot
 
@@ -46,29 +52,22 @@ Download and extract [COCO128-Seg](https://github.com/ultralytics/assets/release
 python prepare_silhouette_pilot.py --data-dir /path/to/coco128-seg
 ```
 
-The extracted directory should contain `images/train2017` and `labels/train2017`. Results are written under `output/silhouette_pilot/`, including individual masks, a preview sheet, class counts, and provenance metadata. Generated data are excluded from Git.
+The extracted directory should contain `images/train2017` and `labels/train2017`. The script saves masks, a preview sheet, class counts, and source records under `output/silhouette_pilot/`. This output folder is excluded from Git.
 
 ## Files
 
-- `prepare_silhouette_pilot.py`: initial mask screening and preview-composition script.
-- `requirements.txt`: dependencies for the pilot; model-training dependencies will be documented with the implementation.
-- `pilot_summary.json`: aggregate counts from the local pilot run.
+- `prepare_silhouette_pilot.py`: extracts masks, applies basic filters, and generates silhouette previews.
+- `requirements.txt`: NumPy and Pillow, needed to run the script. Training dependencies will be added with the model code.
+- `pilot_summary.json`: counts and notes from the trial run.
+- `.gitignore`: keeps downloaded data, generated output, and model files out of Git.
 
-## Limitations and data attribution
+## Data notes
 
-COCO masks describe visible regions, so a mask can already be incomplete before synthetic overlap is added. Polygon conversion may also change fine contours and holes. Screening for complete outlines can introduce selection bias, and synthetic overlaps do not establish robustness to real-world occlusion.
+COCO masks cover the visible part of an object, so some outlines are already incomplete before overlap is added. Converting polygon annotations to masks can also change fine contours and holes. Selecting complete outlines may favor clear, common poses. Results from these synthetic pairs will apply to the tested conditions; performance on real scenes will need separate evaluation.
 
-Source photographs, masks, course handouts, and personal student details are not distributed in this repository. Dataset images and annotations retain their respective terms; cite their original sources when using them.
+Download the dataset separately using the link above. The images and annotations remain subject to their original terms.
 
 - [COCO official website](https://cocodataset.org/)
 - [Microsoft COCO: Common Objects in Context (ECCV 2014)](https://doi.org/10.1007/978-3-319-10602-1_48)
 - [Official COCO annotation API](https://github.com/cocodataset/cocoapi)
 - [Ultralytics COCO128-Seg documentation](https://docs.ultralytics.com/datasets/segment/coco128-seg/)
-
-## Next steps
-
-- Select final categories and document manual screening.
-- Implement matched overlap levels and record final dataset statistics.
-- Implement the CNN and logistic-regression baseline.
-- Train, select settings on validation data, and evaluate on held-out data.
-- Analyze category-level errors and ambiguous silhouette pairs.
