@@ -6,7 +6,11 @@ Can a model recognize an object from its silhouette? What happens when two silho
 
 ## Current status
 
-The project is at the proposal stage. So far, I have tested mask extraction, basic filtering, and overlapping silhouette generation on COCO128-Seg. Model training comes next.
+The first COCO 2017 build is ready: **3,972 single silhouettes and 8,871 overlapping silhouettes** in the active data lists. The ten candidate classes currently have 390–400 single instances each. Model training has not started.
+
+The pipeline extracts original instance masks, splits by source photograph, and makes matched low/medium/high overlap images with fixed object sizes. An initial check of 40 source-photo comparisons excluded 28 rejected or uncertain masks and all overlapping images made from them. Most masks still need visual screening; chairs were especially problematic in that check. See [data preparation](DATA_PREPARATION.md) for the counts, commands and remaining work.
+
+The earlier COCO128-Seg pilot and 100-mask review below are separate proposal-stage records.
 
 The script processed 128 photographs containing 929 annotated objects. Of these, 426 passed the automatic size and image-boundary checks. These checks cannot tell whether an outline is complete, so visual inspection is also needed. I selected a few examples for the preview.
 
@@ -30,7 +34,7 @@ Overlap will be measured using **IoS = intersection area / min(area A, area B)**
 
 Each selected pair will have all three versions, with object scales held fixed and neither object clipped by the canvas. Labels, source IDs, transformations, and measured overlap will be saved with the generated samples.
 
-The current script is an early trial. It records overlap as a fraction of each object's area and makes a few previews. The ten-category dataset and matched low/medium/high sets are still to be built.
+`prepare_silhouette_pilot.py` is the early COCO128-Seg trial. The newer `prepare_dataset.py` implements the ten-category candidate build and matched overlap sets described above.
 
 ## Models
 
@@ -64,6 +68,10 @@ The extracted directory should contain `images/train2017` and `labels/train2017`
 - `.gitignore`: keeps downloaded data, generated output, and model files out of Git.
 - `build_review_sheet.py`: reproduces the inspection sheets and counts for the 100 checked masks.
 - `evidence/`: screening decisions, notes, and a mask-only comparison image.
+- `DATA_PREPARATION.md`: the current COCO 2017 processing steps and dataset counts.
+- `prepare_dataset.py`, `apply_mask_reviews.py`: build the candidate dataset and exclude reviewed sources from its loading lists.
+- `render_dataset_review.py`: download only review-queue photos and make source-mask comparison sheets.
+- `validate_dataset.py`, `package_dataset.py`: check data consistency and export the active samples for training.
 
 ## Data notes
 

@@ -1,0 +1,48 @@
+{
+  "review_queue": 200,
+  "decision_counts": {
+    "uncertain": 9,
+    "reject": 19,
+    "retain": 12,
+    "pending": 160
+  },
+  "active_single_images": 3972,
+  "active_overlap_images": 8871,
+  "active_total_images": 12843,
+  "excluded_source_instances": 28,
+  "removed_overlap_images": 129,
+  "single_counts": {
+    "cat": 394,
+    "dog": 400,
+    "bird": 400,
+    "bottle": 394,
+    "cup": 400,
+    "chair": 390,
+    "car": 394,
+    "airplane": 400,
+    "umbrella": 400,
+    "teddy bear": 400
+  },
+  "per_split": {
+    "train": {
+      "single": 2772,
+      "low": 2057,
+      "medium": 2057,
+      "high": 2057
+    },
+    "validation": {
+      "single": 600,
+      "low": 450,
+      "medium": 450,
+      "high": 450
+    },
+    "test": {
+      "single": 600,
+      "low": 450,
+      "medium": 450,
+      "high": 450
+    }
+  },
+  "review_note": "Recorded decisions are preliminary visual screening. Most instances remain unreviewed.",
+  "loading_rule": "Use train.jsonl, validation.jsonl and test.jsonl; do not enumerate image folders."
+}

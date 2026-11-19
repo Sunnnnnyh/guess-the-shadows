@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "single_images_checked": 4000,
+  "overlap_images_checked": 9000,
+  "matched_triplets_checked": 3000,
+  "source_disjoint": true,
+  "checks": [
+    "pixel contents match stored transforms",
+    "labels match source instances",
+    "fixed object sizes within each triplet",
+    "no clipped objects",
+    "area ratio at most two",
+    "IoS in the recorded band",
+    "all images binary 128x128",
+    "source photographs disjoint across splits"
+  ],
+  "scope": "Geometry and metadata only; this does not certify visual mask completeness",
+  "active_manifest_images": 12843,
+  "class_single_counts": {
+    "cat": 400,
+    "dog": 400,
+    "bird": 400,
+    "bottle": 400,
+    "cup": 400,
+    "chair": 400,
+    "car": 400,
+    "airplane": 400,
+    "umbrella": 400,
+    "teddy bear": 400
+  }
+}
