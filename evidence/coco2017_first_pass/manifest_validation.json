@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "source_disjoint": true,
+  "excluded_sources_absent": true,
+  "labels_match_sources": true,
+  "complete_triplets": 2810,
+  "active_images": 12299,
+  "note": "Only source exclusions and manifests changed; saved image pixels were not modified."
+}

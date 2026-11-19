@@ -1,34 +1,87 @@
 {
   "review_queue": 200,
   "decision_counts": {
-    "uncertain": 9,
-    "reject": 19,
-    "retain": 12,
-    "pending": 160
+    "uncertain": 44,
+    "reject": 87,
+    "retain": 69
   },
-  "active_single_images": 3972,
-  "active_overlap_images": 8871,
-  "active_total_images": 12843,
-  "excluded_source_instances": 28,
-  "removed_overlap_images": 129,
+  "active_single_images": 3869,
+  "active_overlap_images": 8430,
+  "active_total_images": 12299,
+  "excluded_source_instances": 131,
+  "removed_overlap_images": 570,
+  "reviewed_instances": 200,
+  "unreviewed_single_instances": 3800,
+  "per_category_review": {
+    "cat": {
+      "uncertain": 6,
+      "reject": 8,
+      "retain": 6
+    },
+    "dog": {
+      "uncertain": 4,
+      "reject": 10,
+      "retain": 6
+    },
+    "bird": {
+      "reject": 8,
+      "retain": 8,
+      "uncertain": 4
+    },
+    "bottle": {
+      "uncertain": 5,
+      "retain": 8,
+      "reject": 7
+    },
+    "cup": {
+      "reject": 3,
+      "retain": 12,
+      "uncertain": 5
+    },
+    "chair": {
+      "reject": 16,
+      "uncertain": 2,
+      "retain": 2
+    },
+    "car": {
+      "uncertain": 5,
+      "retain": 8,
+      "reject": 7
+    },
+    "airplane": {
+      "retain": 11,
+      "reject": 6,
+      "uncertain": 3
+    },
+    "umbrella": {
+      "uncertain": 7,
+      "reject": 10,
+      "retain": 3
+    },
+    "teddy bear": {
+      "reject": 12,
+      "retain": 5,
+      "uncertain": 3
+    }
+  },
   "single_counts": {
-    "cat": 394,
-    "dog": 400,
-    "bird": 400,
-    "bottle": 394,
-    "cup": 400,
-    "chair": 390,
-    "car": 394,
-    "airplane": 400,
-    "umbrella": 400,
-    "teddy bear": 400
+    "cat": 386,
+    "dog": 386,
+    "bird": 388,
+    "bottle": 388,
+    "cup": 392,
+    "chair": 382,
+    "car": 388,
+    "airplane": 391,
+    "umbrella": 383,
+    "teddy bear": 385
   },
   "per_split": {
     "train": {
-      "single": 2772,
-      "low": 2057,
-      "medium": 2057,
-      "high": 2057
+      "single": 2669,
+      "low": 1910,
+      "medium": 1910,
+      "high": 1910
     },
     "validation": {
       "single": 600,
@@ -43,6 +96,6 @@
       "high": 450
     }
   },
-  "review_note": "Recorded decisions are preliminary visual screening. Most instances remain unreviewed.",
+  "review_note": "Recorded decisions are preliminary source-photo screening; instances outside this queue remain unreviewed.",
   "loading_rule": "Use train.jsonl, validation.jsonl and test.jsonl; do not enumerate image folders."
 }

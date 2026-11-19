@@ -16,7 +16,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 from pycocotools import mask as mask_api
 
-DEFAULT_CATEGORIES = ['cat', 'dog', 'bird', 'bottle', 'cup', 'chair', 'car', 'airplane', 'umbrella', 'teddy bear']
+DEFAULT_CATEGORIES = ['cat', 'dog', 'bird', 'bottle', 'cup', 'bus', 'car', 'airplane', 'scissors', 'teddy bear']
 BANDS = {'low': (.10, .20), 'medium': (.20, .35), 'high': (.35, .50)}
 SPLITS = ('train', 'validation', 'test')
 CANVAS = 128
@@ -160,6 +160,7 @@ def main():
     parser.add_argument('--annotations', type=Path, required=True)
     parser.add_argument('--output', type=Path, default=Path('output/formal_v1'))
     parser.add_argument('--categories', nargs='+', default=DEFAULT_CATEGORIES)
+    parser.add_argument('--confirmed-categories', action='store_true', help='Record an already confirmed class selection')
     parser.add_argument('--instances-per-class', type=int, default=400)
     parser.add_argument('--pairs', type=int, default=3000, help='Number of distinct pairs, each at three overlap levels')
     parser.add_argument('--seed', type=int, default=360)
@@ -203,7 +204,7 @@ def main():
         writer.writerows({'category': name, **{key: counts[name][key] for key in fields[1:]}} for name in cats.values())
     config = {key: str(value) if isinstance(value, Path) else value for key, value in vars(args).items()}
     config.update({'source': 'COCO instances_train2017.json', 'canvas': CANVAS,
-                   'overlap_bands': BANDS, 'categories_provisional': True,
+                   'overlap_bands': BANDS, 'categories_provisional': not args.confirmed_categories,
                    'screening_note': 'Metadata and raster checks cannot establish a complete amodal outline'})
     write_json(out/'build_config.json', config)
     print('Candidate counts:', {name: counts[name]['passed_metadata_screen'] for name in args.categories}, flush=True)
@@ -324,7 +325,7 @@ def main():
     source_sets = {split:{r['source_image_id'] for r in singles if r['split']==split} for split in SPLITS}
     assert all(not source_sets[a]&source_sets[b] for i,a in enumerate(SPLITS) for b in SPLITS[i+1:])
     summary = {'status':'first-pass automatic candidates; human screening not complete',
-               'categories_provisional':True, 'categories':args.categories, 'seed':args.seed,
+               'categories_provisional':not args.confirmed_categories, 'categories':args.categories, 'seed':args.seed,
                'single_instances':len(singles), 'distinct_pairs':len(seen_pairs), 'overlap_images':len(pairs),
                'total_images':len(singles)+len(pairs), 'review_queue_count':len(review_rows),
                'unique_source_photographs':len(set.union(*source_sets.values())),

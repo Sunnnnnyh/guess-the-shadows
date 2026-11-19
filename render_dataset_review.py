@@ -43,7 +43,7 @@ def main():
     root = args.dataset.resolve()
     records = {r['id']:r for r in map(json.loads, (root/'single_samples.jsonl').read_text(encoding='utf-8').splitlines())}
     with (root/'review_queue.csv').open(encoding='utf-8', newline='') as handle:
-        selected = [records[r['id']] for r in csv.DictReader(handle)]
+        selected = [{**records[r['id']], 'decision':r['decision']} for r in csv.DictReader(handle)]
     photo_dir = root/'source_photos'
     photo_dir.mkdir(exist_ok=True)
     if args.download:
@@ -65,7 +65,7 @@ def main():
     for page in range((len(selected)+9)//10):
         sheet = Image.new('RGB', (1200, 1420), 'white')
         draw = ImageDraw.Draw(sheet)
-        draw.text((10, 10), 'COCO 2017 | source crop and extracted mask | decisions pending', fill='black', font=font)
+        draw.text((10, 10), 'COCO 2017 | source crop and extracted mask | decisions in review_queue.csv', fill='black', font=font)
         for j, row in enumerate(selected[page*10:page*10+10]):
             number = page*10+j+1
             x, y = (j%2)*600, (j//2)*270+55
@@ -75,7 +75,7 @@ def main():
                 box = (max(0,x0-pad),max(0,y0-pad),min(source.width,x1+pad),min(source.height,y1+pad))
                 crop = source.crop(box).convert('RGB')
             ImageDraw.Draw(crop).rectangle((x0-box[0],y0-box[1],x1-box[0]-1,y1-box[1]-1),outline='red',width=2)
-            draw.text((x+8,y),f"{number}. {row['category']} | annotation {row['annotation_id']}",fill='black',font=font)
+            draw.text((x+8,y),f"{number}. {row['category']} | annotation {row['annotation_id']} | {row['decision']}",fill='black',font=font)
             draw.text((x+8,y+23),f"image {row['source_image_id']} | source area {row['raster_area']} px",fill='#555555',font=small)
             sheet.paste(ImageOps.contain(crop,(310,210)),(x+8,y+47))
             with Image.open(root/row['mask_path']) as mask:

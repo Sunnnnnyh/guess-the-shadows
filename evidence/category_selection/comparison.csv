@@ -1,0 +1,5 @@
+category,reviewed,retain,reject,uncertain,source
+chair,20,2,16,2,formal_v1 training review queue
+umbrella,20,3,10,7,formal_v1 training review queue
+bus,20,13,4,3,replacement_audit training review queue
+scissors,20,9,8,3,replacement_audit training review queue

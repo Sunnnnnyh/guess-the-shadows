@@ -1,0 +1,101 @@
+{
+  "review_queue": 200,
+  "decision_counts": {
+    "uncertain": 41,
+    "reject": 73,
+    "retain": 86
+  },
+  "active_single_images": 3886,
+  "active_overlap_images": 8514,
+  "active_total_images": 12400,
+  "excluded_source_instances": 114,
+  "removed_overlap_images": 486,
+  "reviewed_instances": 200,
+  "unreviewed_single_instances": 3800,
+  "per_category_review": {
+    "cat": {
+      "uncertain": 6,
+      "reject": 8,
+      "retain": 6
+    },
+    "dog": {
+      "uncertain": 4,
+      "reject": 10,
+      "retain": 6
+    },
+    "bird": {
+      "reject": 8,
+      "retain": 8,
+      "uncertain": 4
+    },
+    "bottle": {
+      "uncertain": 5,
+      "retain": 8,
+      "reject": 7
+    },
+    "cup": {
+      "reject": 3,
+      "retain": 12,
+      "uncertain": 5
+    },
+    "bus": {
+      "retain": 13,
+      "uncertain": 3,
+      "reject": 4
+    },
+    "car": {
+      "uncertain": 5,
+      "retain": 8,
+      "reject": 7
+    },
+    "airplane": {
+      "retain": 11,
+      "reject": 6,
+      "uncertain": 3
+    },
+    "scissors": {
+      "retain": 9,
+      "reject": 8,
+      "uncertain": 3
+    },
+    "teddy bear": {
+      "reject": 12,
+      "retain": 5,
+      "uncertain": 3
+    }
+  },
+  "single_counts": {
+    "cat": 386,
+    "dog": 386,
+    "bird": 388,
+    "bottle": 388,
+    "cup": 392,
+    "bus": 393,
+    "car": 388,
+    "airplane": 391,
+    "scissors": 389,
+    "teddy bear": 385
+  },
+  "per_split": {
+    "train": {
+      "single": 2686,
+      "low": 1938,
+      "medium": 1938,
+      "high": 1938
+    },
+    "validation": {
+      "single": 600,
+      "low": 450,
+      "medium": 450,
+      "high": 450
+    },
+    "test": {
+      "single": 600,
+      "low": 450,
+      "medium": 450,
+      "high": 450
+    }
+  },
+  "review_note": "Recorded decisions are preliminary source-photo screening; instances outside this queue remain unreviewed.",
+  "loading_rule": "Use train.jsonl, validation.jsonl and test.jsonl; do not enumerate image folders."
+}

@@ -1,0 +1,55 @@
+{
+  "status": "first-pass automatic candidates; human screening not complete",
+  "categories_provisional": false,
+  "categories": [
+    "cat",
+    "dog",
+    "bird",
+    "bottle",
+    "cup",
+    "bus",
+    "car",
+    "airplane",
+    "scissors",
+    "teddy bear"
+  ],
+  "seed": 360,
+  "single_instances": 4000,
+  "distinct_pairs": 3000,
+  "overlap_images": 9000,
+  "total_images": 13000,
+  "review_queue_count": 200,
+  "unique_source_photographs": 3673,
+  "raster_rejections_during_selection": {
+    "raster_image_boundary": 46,
+    "small_raster_side": 1,
+    "small_raster_area": 2
+  },
+  "geometry_retries": 109,
+  "per_split": {
+    "train": {
+      "single": 2800,
+      "low": 2100,
+      "medium": 2100,
+      "high": 2100
+    },
+    "validation": {
+      "single": 600,
+      "low": 450,
+      "medium": 450,
+      "high": 450
+    },
+    "test": {
+      "single": 600,
+      "low": 450,
+      "medium": 450,
+      "high": 450
+    }
+  },
+  "source_disjoint": true,
+  "external_final_test_collected": false,
+  "selection_note": "One-polygon masks preferred, followed by seeded hash order. Visual review remains necessary.",
+  "seconds": 134.12,
+  "confirmed_categories": true,
+  "category_selection_confirmed_by": "Project author on 2026-11-18"
+}

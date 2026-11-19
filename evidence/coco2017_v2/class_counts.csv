@@ -1,0 +1,11 @@
+category,train_single,validation_single,test_single,total_single
+cat,266,60,60,386
+dog,266,60,60,386
+bird,268,60,60,388
+bottle,268,60,60,388
+cup,272,60,60,392
+bus,273,60,60,393
+car,268,60,60,388
+airplane,271,60,60,391
+scissors,269,60,60,389
+teddy bear,265,60,60,385

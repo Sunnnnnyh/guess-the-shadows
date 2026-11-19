@@ -1,0 +1,8 @@
+{
+  "confirmation_date": "2026-11-18",
+  "confirmed_by": "Project author",
+  "replacements": {"chair": "bus", "umbrella": "scissors"},
+  "selected_categories": ["cat", "dog", "bird", "bottle", "cup", "bus", "car", "airplane", "scissors", "teddy bear"],
+  "basis": "Source-photo comparisons of 20 training masks per candidate class using the same automatic filters.",
+  "interpretation": "Counts describe these reviewed samples only. They are not model performance results."
+}

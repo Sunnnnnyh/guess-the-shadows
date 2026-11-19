@@ -6,9 +6,11 @@ Can a model recognize an object from its silhouette? What happens when two silho
 
 ## Current status
 
-The first COCO 2017 build is ready: **3,972 single silhouettes and 8,871 overlapping silhouettes** in the active data lists. The ten candidate classes currently have 390–400 single instances each. Model training has not started.
+The current COCO 2017 build has **3,886 single silhouettes and 8,514 overlapping silhouettes** in the active data lists. The ten selected classes have 385–393 single instances each. Model training has not started.
 
-The pipeline extracts original instance masks, splits by source photograph, and makes matched low/medium/high overlap images with fixed object sizes. An initial check of 40 source-photo comparisons excluded 28 rejected or uncertain masks and all overlapping images made from them. Most masks still need visual screening; chairs were especially problematic in that check. See [data preparation](DATA_PREPARATION.md) for the counts, commands and remaining work.
+The pipeline extracts original instance masks, splits by source photograph, and makes matched low/medium/high overlap images with fixed object sizes. Source-photo screening of 200 examples excluded 114 rejected or uncertain masks and all overlapping images made from them. Another 3,800 masks remain automatically selected candidates. See [data preparation](DATA_PREPARATION.md) for the counts, commands and remaining work.
+
+The classes are cat, dog, bird, bottle, cup, bus, car, airplane, scissors, and teddy bear. Screening found frequent partial outlines in chair and umbrella examples; the project author approved replacing them with bus and scissors after reviewing the category comparison.
 
 The earlier COCO128-Seg pilot and 100-mask review below are separate proposal-stage records.
 
@@ -18,7 +20,7 @@ I checked 100 masks across 13 categories against their source photographs: 24 we
 
 ## Dataset plan
 
-I plan to use COCO 2017 instance masks and select ten everyday-object categories, aiming for 300–500 usable instances per category. The final selection will depend on mask quality. Screening will exclude crowd annotations, very small objects, substantial occlusion or truncation, and annotation errors.
+The COCO 2017 dataset targets 300–500 usable instances per class. Screening excludes crowd annotations, very small objects, substantial occlusion or truncation, and annotation errors.
 
 Original photographs will be split into training, validation, and test sets in a 70:15:15 ratio with seed 360, before any overlapping images are made. All objects and generated samples from a photograph will stay in the same split to prevent data leakage.
 

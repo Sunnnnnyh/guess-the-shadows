@@ -20,6 +20,9 @@ def main():
     rows = [json.loads(line) for s in SPLITS for line in (root/f'{s}.jsonl').read_text(encoding='utf-8').splitlines()]
     singles = [r for r in rows if r['condition']=='single']
     pairs = [r for r in rows if r['condition']!='single']
+    configuration = json.loads((root/'build_config.json').read_text(encoding='utf-8'))
+    class_note = ('The class list is confirmed for this version.\n' if not configuration.get('categories_provisional',True)
+                  else 'Category names remain provisional.\n')
     with (root/'class_counts.csv').open('w',encoding='utf-8',newline='') as handle:
         writer = csv.writer(handle)
         writer.writerow(['category','train_single','validation_single','test_single','total_single'])
@@ -35,6 +38,8 @@ def main():
         'screening_summary.json','manifest_exclusions.json','review_queue.csv','dependency_versions.json','preview.png']
     if (root/'validation_results.json').exists():
         other_files.append('validation_results.json')
+    if (root/'manifest_validation.json').exists():
+        other_files.append('manifest_validation.json')
     with zipfile.ZipFile(args.archive,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=1) as archive:
         for row in rows:
             archive.write(root/row['path'],row['path'])
@@ -48,7 +53,7 @@ def main():
             'First-pass COCO silhouette candidates. Use the train/validation/test JSONL manifests, '
             'not directory enumeration. Most source masks have not yet received visual review. '
             'Rejected or uncertain reviewed sources and their derivatives are excluded. '
-            'No original photographs are included. Category names remain provisional.\n')
+            'No original photographs are included. '+class_note)
     with zipfile.ZipFile(args.archive) as archive:
         members = set(archive.namelist())
         assert all(row['path'] in members for row in rows)
